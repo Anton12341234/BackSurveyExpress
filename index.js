@@ -11,7 +11,7 @@ const DB_URL = `mongodb+srv://anton:0932304567@cluster0.j8curid.mongodb.net/?ret
 const app = express()
 
 const corsOptions = {
-  origin: "http://localhost:4000",
+  origin: "http://localhost:3000",
 };
 
 
