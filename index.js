@@ -11,7 +11,11 @@ const DB_URL = `mongodb+srv://anton:0932304567@cluster0.j8curid.mongodb.net/?ret
 const app = express()
 
 const corsOptions = {
+<<<<<<< HEAD
   origin: "http://192.168.0.104:19006",
+=======
+  origin: "*",
+>>>>>>> 13320420ae239f721062d2e790c0ff3c1fc5689a
 };
 
 

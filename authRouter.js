@@ -3,10 +3,8 @@ import controller from './authController.js'
 import { check } from "express-validator"
 const router = new Router()
 import authMiddleware from'./middlewaree/authMiddleware.js'
-import PostController from "./PostController.js";
-import ImageController from "./ImageController.js";
-import commentController from "./commentController.js";
-import MessageController from "./MessageController.js";
+import SurveyController from "./SurveyController.js";
+import AnswerController from './AnswerController.js'
 
 router.post('/registration', [
     check('username', "Имя пользователя не может быть пустым").notEmpty(),
@@ -17,34 +15,14 @@ router.get('/users',authMiddleware, controller.getUsers)
 router.get('/users/:id',authMiddleware, controller.getOne)
 router.put('/users',authMiddleware, controller.update)
 
-router.post('/posts',authMiddleware, PostController.create)
-router.post('/all_Posts',authMiddleware, PostController.getAll)
-router.post('/all_Search',authMiddleware, PostController.getAllSearch)
-router.post('/all_Search/count',authMiddleware, PostController.getAllSearchCount)
-router.get('/posts/count',authMiddleware, PostController.getCount)
-router.get('/my_posts',authMiddleware, PostController.getMy)
-router.get('/posts/:id',authMiddleware, PostController.getOne)
-router.put('/posts',authMiddleware, PostController.update)
-router.delete('/posts/:id',authMiddleware, PostController.delete)
+router.get('/all_Surveys',authMiddleware, SurveyController.getAll)
+router.get('/surveys/:id',authMiddleware, SurveyController.getOne)
+router.post('/surveys',authMiddleware, SurveyController.create)
 
-router.post('/Image', ImageController.create)
-router.get('/Image', ImageController.getAll)
-router.get('/Image/:id', ImageController.getOne)
-router.put('/Image', ImageController.update)
-router.delete('/Image/:id', ImageController.delete)
-
-router.post('/comment', authMiddleware,commentController.create)
-router.get('/comment', authMiddleware,commentController.getAll)
-router.get('/comment/:id', authMiddleware,commentController.getOne)
-router.put('/comment',authMiddleware, commentController.update)
-router.delete('/comment/:id',authMiddleware, commentController.delete)
-
-router.post('/message', authMiddleware,MessageController.create)
-router.post('/message_get', authMiddleware,MessageController.getAll)
-router.get('/message_Rooms', authMiddleware,MessageController.getRooms)
-router.get('/message/:id', authMiddleware,MessageController.getOne)
-router.put('/message',authMiddleware, MessageController.update)
-router.delete('/message/:id',authMiddleware, MessageController.delete)
+router.post('/answers',authMiddleware, AnswerController.create)
+router.get('/all_Answers/:id',authMiddleware, AnswerController.getAll)
+router.post('/my_Answer/:id',authMiddleware, AnswerController.getAllSearch)
+router.delete('/del_answers',authMiddleware, AnswerController.delete)
 
 
 export default router;

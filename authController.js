@@ -11,7 +11,7 @@ const generateAccessToken = (id, roles) => {
         id,
         roles
     }
-    return jwt.sign(payload, secret, {expiresIn: "24h"} )
+    return jwt.sign(payload, secret, {expiresIn: "240h"} )
 }
 
 class authController {
@@ -49,7 +49,7 @@ class authController {
             if (!validPassword) {
                 return res.status(400).json({message: `Введен неверный пароль`})
             }
-            const token = generateAccessToken(user._id, user.roles)
+            const token = generateAccessToken(user._id, user.roles, user.username)
             return res.json({token})
         } catch (e) {
             console.log(e)
@@ -59,8 +59,7 @@ class authController {
 
     async getUsers(req, res) {
         try {
-            const users = await User.find()//сделать сначало это //const userRole = new Role()
-                                                                 //await userRole.save()
+            const users = await User.find()
             res.json(users)
         } catch (e) {
             console.log(e)
